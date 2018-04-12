@@ -16,3 +16,13 @@ exports.init = function (callback) {
         talks = body;
     });
 };
+
+exports.listerSessions = function (callback) {
+    if(talks.length == 0){
+        exports.init(function(nb){
+            callback(talks);
+        }); 
+    } else {
+        callback(talks);
+    }
+};
