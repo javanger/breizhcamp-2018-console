@@ -19,3 +19,13 @@ exports.init = function(callback) {
  });
 };
 
+exports.listerSessions = function (callback) {
+     var t = "";
+    talks.forEach(function(talk) {
+    t = t.concat(talk.name+ " ( "+ talk.speakers + " )\n");
+        });
+        callback(t);
+      };
+
+
+
