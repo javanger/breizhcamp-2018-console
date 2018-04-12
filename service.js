@@ -1,4 +1,6 @@
 var request = require("request");
+var jsdom = require("jsdom");
+var fs = require("fs");
 
 // tableau qui contiendra toutes les sessions du BreizhCamp
 var talks = [];
@@ -36,6 +38,27 @@ exports.init = talksLenght => {
   uris.forEach(uri => getData(uri, dataLenght, talksLenght));
 };
 
-exports.listerSessions = (fn) => {
+exports.listerSessions = fn => {
   fn(talks);
+};
+
+exports.listerPresentateur = fn => {
+  var sourceHtml = fs.readFileSync("./prototype/source.html").toString();
+  var source = new jsdom.JSDOM(sourceHtml);
+  var speakerBox = source.window.document
+    .getElementById("content")
+    .querySelector("div.container")
+    .querySelector("div.row")
+    .querySelectorAll("div.speaker-box");
+
+  var speakers = [];
+  speakerBox.forEach(box => {
+    var value = box
+      .querySelector("div.speaker")
+      .querySelector("div.media")
+      .querySelector("div.media-body")
+      .querySelector("h3").innerHTML;
+    speakers.push(value);
+  });
+  fn(speakers);
 };

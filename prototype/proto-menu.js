@@ -10,6 +10,7 @@ var menu =
   "\n\n*************************\n" +
   "1. Rafraichir les données\n" +
   "2. Lister les sessions\n" +
+  "3. Lister les présentateurs\n" +
   "99. Quitter\n\n";
 
 var saisir = saisie => {
@@ -39,6 +40,11 @@ var choixService = choix => {
         console.log(data.map(e => `${e.name} (${e.speakers})`));
         afficher(saisir);
       });
+    } else if (choix == "3") {
+      service.listerPresentateur(data => {
+        console.log(data);
+        afficher(saisir);
+      })
     }
   }
 };
