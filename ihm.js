@@ -31,7 +31,9 @@ function afficherMenu() {
         afficherMenu();
         break;
       case "3":
-        console.log(`Vous avez saisi : ${saisie}`);
+        service.listerPresentateur(function(nb){
+            console.log(nb);
+        });
         afficherMenu();
         break;
       case "99":
