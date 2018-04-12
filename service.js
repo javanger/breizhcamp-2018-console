@@ -14,7 +14,15 @@ exports.init = function (callback) {
     });
 
       // body contient les données récupérées
-    talks =  talks.concat(body);
+    talks = body;
   });
+
+};
+
+exports.listerSessions = function (callback){
+  talks.forEach(function (element){
+    var string = element.name + ", présenté par : " + element.speakers;
+    callback(string)
+  })
 
 };
