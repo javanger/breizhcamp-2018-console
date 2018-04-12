@@ -25,6 +25,12 @@ function saisie(){
                     saisie();
                 });   
                 break;
+            case '3':
+                service.listerPresentateurs(function(speakers) {
+                    console.log(speakers.map(speaker => speaker.name).join('\n'));
+                    saisie();
+                });   
+                break;
             case '99':
                 rl.close();
                 break;
@@ -36,6 +42,7 @@ function menu(){
     var chaine = '*************************\n'
     chaine += '1. Rafraichir les données\n'
     chaine += '2. Lister les sessions\n'
+    chaine += '3. Lister les présentateurs\n'
     chaine += '99. Quitter\n'
     return chaine
 }
