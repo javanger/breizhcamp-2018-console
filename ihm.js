@@ -18,7 +18,7 @@ function choix(){
       switch(saisie){
         case "1":{
           service.init(function(nb) {
-            console.log(nb, 'Données mises à jour')
+            console.log(nb, 'Données mises à jour\n')
 
           });
           choix();
@@ -26,7 +26,10 @@ function choix(){
         }
         case "2":{
           service.listerSessions(function(string){
-            console.log(string);
+            string.forEach(function (element){
+              var str = element.name + ", présenté par : " + element.speakers;
+              console.log(str)
+            })
           })
           choix();
           break;

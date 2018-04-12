@@ -20,9 +20,5 @@ exports.init = function (callback) {
 };
 
 exports.listerSessions = function (callback){
-  talks.forEach(function (element){
-    var string = element.name + ", présenté par : " + element.speakers;
-    callback(string)
-  })
-
+  callback(talks)
 };
