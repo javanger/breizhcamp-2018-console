@@ -28,6 +28,14 @@ function chargement(){
         });
         chargement();
         break;
+      case '3':
+        service.listerPresentateurs(function(fullNames) {
+          fullNames.forEach(function(fullName) {
+            console.log(fullName.name)
+          });
+        });
+        chargement();
+        break;
       case '99':
         rl.close();
         break;
