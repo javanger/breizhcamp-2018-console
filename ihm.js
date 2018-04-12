@@ -21,8 +21,10 @@ function chargement(){
         chargement();
         break;
       case '2':
-        service.listerSessions(function(chaine) {
-          console.log(chaine)
+        service.listerSessions(function(values) {
+          values.forEach(function(val) {
+             console.log(val.name+ " ("+ val.speakers+")\n")
+          });
         });
         chargement();
         break;

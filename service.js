@@ -18,9 +18,5 @@ exports.init = function (callback) {
 };
 
 exports.listerSessions = function (callback) {
-  var value = "";
-  talks.forEach(function(talk) {
-    value = value.concat(talk.name+ " ("+ talk.speakers+")\n");
-  });
-  callback(value);
+  callback(talks);
 };
