@@ -2,12 +2,39 @@
 // recherche par défaut dans le répertoire node_modules
 var request = require('request')
 
+var URL_TALKS = 'http://www.breizhcamp.org/json/talks.json';
+var URL_OTHERS = 'http://www.breizhcamp.org/json/others.json';
+
+
 // tableau qui contiendra toutes les sessions du BreizhCamp
 var talks = [];
 
-exports.init = function (url, callback) {
+exports.init = function (callback) {
 
-    // TODO => effectuer les requêtes HTTP permettant de récupérer les données du BreizhCamp
+    var resultatAttendu = [];
+
+    function pushResult(talks, url) {
+        resultatAttendu.push(url)
+
+        if ([URL_OTHERS, URL_TALKS].every(u => resultatAttendu.includes(u))) {
+            callback(talks.length)
+        }
+
+
+    }
+
+    getJSON(URL_OTHERS, function (talks, url) {
+        pushResult(talks, url)
+    });
+
+    getJSON(URL_TALKS, function (talks, url) {
+        pushResult(talks, url)
+    });
+
+}
+
+function getJSON(url, callback) {
+
     request(url, {
         json: true
     }, function (err, res, body) {
@@ -15,11 +42,9 @@ exports.init = function (url, callback) {
             return console.log('Erreur', err);
         }
 
-        // TODO => une fois les données récupérées, alimenter la variable talks
-        talks = body;
+        talks = talks.concat(body);
 
-        // TODO => invoquer la callback avec le nombre de sessions récupérées
-        callback(talks.length);
+        callback(talks, url);
 
     });
 
