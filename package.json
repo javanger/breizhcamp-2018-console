@@ -1,0 +1,23 @@
+{
+  "name": "breizhcamp-2018-console",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gleamoh/breizhcamp-2018-console.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gleamoh/breizhcamp-2018-console/issues"
+  },
+  "homepage": "https://github.com/Gleamoh/breizhcamp-2018-console#readme",
+  "scripts":{
+    "start": "node index.js"
+  }
+}
