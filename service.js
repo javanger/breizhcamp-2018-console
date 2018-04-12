@@ -14,10 +14,14 @@ var getData = (uri, dataLenght, talksLenght) => {
     if (err) {
       return console.log("Erreur", err);
     }
+    compteurInitGet++;
+    if (compteurInitGet > uris.length) {
+      talks = [];
+      compteurInitGet = 1;
+    }
     talks = talks.concat(body);
     // body contient les données récupérées
     // invoquer la callback avec le nombre de sessions récupérées
-    compteurInitGet ++;
     dataLenght(body.length);
     if (compteurInitGet == uris.length) talksLenght(talks.length);
   });
@@ -30,4 +34,8 @@ var dataLenght = nb => {
 exports.init = talksLenght => {
   // Envoie de la requête http
   uris.forEach(uri => getData(uri, dataLenght, talksLenght));
+};
+
+exports.listerSessions = (fn) => {
+  fn(talks);
 };
