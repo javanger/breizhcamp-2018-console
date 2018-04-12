@@ -62,3 +62,13 @@ exports.listerPresentateur = fn => {
   });
   fn(speakers);
 };
+
+exports.findSessionsWith = (keyword, callback) => {
+  var results = talks.filter(e => e.name.toLowerCase().indexOf(keyword.toLowerCase()) != -1).map(e => e.name);
+  callback(results);
+};
+
+
+
+
+
