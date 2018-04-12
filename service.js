@@ -5,11 +5,16 @@ var request = require('request')
 exports.init = function (callback) {
 
   request('http://www.breizhcamp.org/json/talks.json', { json: true }, function(err, res, body) {
-      if (err) { return console.log('Erreur', err); }
+    request('http://www.breizhcamp.org/json/others.json', { json: true }, function(err, res, body) {
+
+
+        // body contient les données récupérées
+        talks = talks.concat(body);
+        callback(talks.length)
+    });
 
       // body contient les données récupérées
-      talks=body;
-      callback(talks.length)
+    talks =  talks.concat(body);
   });
-  
+
 };
