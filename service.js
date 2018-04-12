@@ -20,11 +20,15 @@ exports.init = function(callback) {
     });
 
 
-    talks = talks.concat(body);
+    talks = body;
   });
 
  
  
   
   
+};
+
+exports.listerSessions = function(callback){
+callback(talks);
 };
