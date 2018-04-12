@@ -3,24 +3,31 @@ var request = require("request");
 // tableau qui contiendra toutes les sessions du BreizhCamp
 var talks = [];
 
-const API_URI = "https://jsonplaceholder.typicode.com/posts";
+const SESSIONS_URI = "http://www.breizhcamp.org/json/talks.json";
+const KEYNOTE_URI = "http://www.breizhcamp.org/json/others.json";
+var uris = [SESSIONS_URI, KEYNOTE_URI];
+var compteurInitGet = 0;
 
-var getData = (uri, fn) => {
+var getData = (uri, dataLenght, talksLenght) => {
   // effectuer les requêtes HTTP permettant de récupérer les données du BreizhCamp
   request(uri, { json: true }, (err, res, body) => {
     if (err) {
       return console.log("Erreur", err);
     }
+    talks = talks.concat(body);
     // body contient les données récupérées
     // invoquer la callback avec le nombre de sessions récupérées
-    fn(body.length);
+    compteurInitGet ++;
+    dataLenght(body.length);
+    if (compteurInitGet == uris.length) talksLenght(talks.length);
   });
 };
 
-exports.init = () => {
+var dataLenght = nb => {
+  console.log(nb);
+};
+
+exports.init = talksLenght => {
   // Envoie de la requête http
-  getData(API_URI, nbSessions => {
-    // une fois les données récupérées, alimenter la variable talks
-    console.log(nbSessions);
-  });
+  uris.forEach(uri => getData(uri, dataLenght, talksLenght));
 };
