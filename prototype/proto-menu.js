@@ -91,6 +91,21 @@ var choixService = choix => {
 
 var details = (saisie, data, choix) => {
 
+  // determiner la liste de choix possible en fonction du nombre de resulats de recherche
+    Array.from(Array(data.length).keys()).forEach(e => {
+      // tableau commence à 0 donc incrémente de 1
+      var possibleCase = e+1+"";
+      if(choix == possibleCase) {
+        service.findSessionByName(data[e], (res) => {
+          console.log("\n\n" + 
+          "name: " + res.name + "\n"+
+          "description: " + res.description + "\n"
+         );
+        });
+
+      }
+    });
+
   switch (choix) {
     case MENU_CHOIX:
       afficher(menu, saisir);

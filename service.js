@@ -68,6 +68,11 @@ exports.findSessionsWith = (keyword, callback) => {
   callback(results);
 };
 
+exports.findSessionByName = (name, callback) => {
+    var results = talks.filter(e => e.name.toLowerCase() == name.toLowerCase())[0];
+  callback(results);
+};
+
 
 
 
