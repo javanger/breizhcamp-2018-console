@@ -1,10 +1,9 @@
 var service = require('./service');
 
+var readline = require('readline');
+
 exports.start = function () {
 
-    service.init(function (nb) {
+    service.boucleMenu();
 
-        console.log('[init]', nb, 'sessions trouvées.')
-
-    });
 };
