@@ -11,7 +11,7 @@ exports.start = function() {
 
 function afficherMenu() {
   console.log(
-    " 1. Raffraichir les données \n 2. Lister les sessions \n 99. Quitter"
+    " 1. Raffraichir les données \n 2. Lister les sessions \n 3. Lister les intervenants \n 99. Quitter"
   );
   rl.question("Faite votre choix : ", function(saisie) {
     switch (saisie) {
